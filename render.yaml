@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: docuquery-ai-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    plan: free
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+    disk:
+      name: chroma-storage
+      mountPath: /app/data
+      sizeGB: 1
+
+  - type: web
+    name: docuquery-ai-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: .
+    plan: free
+    envVars:
+      - key: BACKEND_URL
+        fromService:
+          name: docuquery-ai-backend
+          type: web
+          property: host
+      - key: BACKEND_USE_HTTPS
+        value: "true"
