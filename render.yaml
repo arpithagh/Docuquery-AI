@@ -8,10 +8,6 @@ services:
     envVars:
       - key: GROQ_API_KEY
         sync: false
-    disk:
-      name: chroma-storage
-      mountPath: /app/data
-      sizeGB: 1
 
   - type: web
     name: docuquery-ai-frontend
