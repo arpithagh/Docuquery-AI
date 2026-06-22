@@ -2,8 +2,20 @@
 
 A production-grade document intelligence system. Upload PDFs and have a grounded conversation with them — powered by Retrieval-Augmented Generation (RAG) with semantic search, multi-document retrieval, conversation memory, and source citations.
 
-**Live demo:** [your-render-url-here]
-**Backend API:** [your-render-backend-url-here]
+Fully containerized with Docker — clone and run with a single command (see Quick Start below).
+
+---
+
+## Screenshots
+
+**Clean empty state — upload any PDF to get started**
+![Empty state](screenshots/empty-state.png)
+
+**Grounded answers with source citations**
+![Chat demo](screenshots/chat-demo.png)
+
+**Multi-document cross-referencing**
+![Multi-document comparison](screenshots/multi-doc.png)
 
 ---
 
@@ -41,7 +53,21 @@ Question → Embed Query → Per-Document Similarity Search → Merge & Re-rank
 
 ---
 
-## Setup
+## Quick Start (Docker — Recommended)
+
+```bash
+git clone https://github.com/arpithagh/Docuquery-AI
+cd Docuquery-AI
+cp .env.example .env
+# paste your free Groq API key (console.groq.com) into .env
+docker-compose up --build
+```
+
+Visit `http://localhost:8501`
+
+Backend and frontend run as separate, networked containers — see `docker-compose.yml`.
+
+## Manual Setup
 
 ### 1. Clone and install
 

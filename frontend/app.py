@@ -302,6 +302,19 @@ with st.sidebar:
         clear_history()
         st.rerun()
 
+    if st.button("🔄 Reset all documents", use_container_width=True):
+        try:
+            r = requests.post(f"{API_URL}/reset", timeout=10)
+            if r.status_code == 200:
+                st.session_state.messages = []
+                st.session_state.documents = []
+                st.session_state.total_chunks = 0
+                st.session_state.uploaded_files = []
+                st.success("✅ All documents cleared")
+                st.rerun()
+        except Exception as e:
+            st.error(f"Reset failed: {e}")
+
     st.markdown('<hr class="divider">', unsafe_allow_html=True)
     st.markdown(
         '<div style="font-size:11px;color:#adb5bd;line-height:1.6">'
